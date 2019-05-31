@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative "board"
 
 class SudokuGame
@@ -11,16 +12,6 @@ class SudokuGame
   end
 
   def get_pos
-    pos = nil
-    until pos && valid_val?(pos)
-      puts "Please enter a value between 1 and 9 (0 to clear the tile)"
-      print "> "
-      pos = parse_val(gets.chomp)
-    end
-    pos
-  end
-
-  def get_val
     val = nil
     until val && valid_pos?(val)
       puts "Please enter a position on the board (e.g., '3,4')"
@@ -38,6 +29,16 @@ class SudokuGame
     val
   end
 
+  def get_val
+    pos = nil
+    until pos && valid_val?(pos)
+      puts "Please enter a value between 1 and 9 (0 to clear the tile)"
+      print "> "
+      pos = parse_val(gets.chomp)
+    end
+    pos
+  end
+
   def parse_pos(string)
     string.split(",").map { |char| Integer(char) }
   end
@@ -49,8 +50,8 @@ class SudokuGame
   def play_turn
     board.render
 
-    val = get_val
     pos = get_pos
+    val = get_val
 
     board[pos] = val
   end
@@ -80,6 +81,6 @@ class SudokuGame
   attr_reader :board
 end
 
-
+# debugger
 game = SudokuGame.from_file("puzzles/sudoku1.txt")
 game.run
