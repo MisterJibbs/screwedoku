@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative "board"
 
 class SudokuGame
@@ -80,4 +81,5 @@ end
 
 
 game = SudokuGame.from_file("puzzles/sudoku1.txt")
+# debugger
 game.run
