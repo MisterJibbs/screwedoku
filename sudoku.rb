@@ -48,8 +48,8 @@ class SudokuGame
 
   def play_turn
     board.render
-    val = get_pos
-    pos = get_val
+    pos = get_pos
+    val = get_val
     board[pos] = val
   end
 
@@ -77,7 +77,6 @@ class SudokuGame
   private
   attr_reader :board
 end
-
 
 game = SudokuGame.from_file("puzzles/sudoku1.txt")
 game.run
